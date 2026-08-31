@@ -39,7 +39,7 @@ class GraphCNN(nn.Module):
 
         self.fusion_pre_bert = nn.Linear(32 * 41 + 128, 32 * 41)  # 注意：图特征维度是128，这里修正原代码注释错误（原注释32*4=128）
 
-        self.trans = Encoder(1, 41, 4, 100, 400, 32)
+        self.trans = Transformer(1, 41, 4, 100, 400, 32)
         self.fusion = nn.Linear(1312, 1024)
         self.block1 = nn.Sequential(
             nn.Linear(1024, 256),
