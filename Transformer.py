@@ -15,12 +15,6 @@ class ScaledDotProductAttention(nn.Module):
         self.d_k = d_k
 
     def forward(self, Q, K, V):
-        # Q = F.normalize(Q, p=2, dim=-1)
-        # K = F.normalize(K, p=2, dim=-1)
-        # # 计算 scores
-        # scores = torch.matmul(Q, K.transpose(-1, -2)) / torch.sqrt(torch.tensor(self.d_k, dtype=torch.float32))
-        # # 应用 softmax
-        # attn = F.softmax(scores, dim=-1)
         scores = torch.matmul(Q, K.transpose(-1, -2)) / np.sqrt(self.d_k)
         attn = nn.Softmax(dim=-1)(scores)
         context = torch.matmul(attn, V)
@@ -55,32 +49,6 @@ class MultiHeadAttention(nn.Module):
         return output, attn
 
 
-# class PoswiseFeedForwardNet(nn.Module):
-#     def __init__(self, d_model, d_ff):
-#         super(PoswiseFeedForwardNet, self).__init__()
-#         self.fc1 = nn.Linear(d_model, d_ff)
-#         self.fc2 = nn.Linear(d_ff, d_model)
-#         self.layer_norm = nn.LayerNorm(d_model)
-#
-#     def forward(self, x):
-#         residual = x
-#         return self.layer_norm(self.fc2(nn.ReLU(self.fc1(x))) + residual)
-#
-#
-# class FeedForward(nn.Module):
-#     def __init__(self, dim, hidden_dim, dropout=0.1):
-#         super().__init__()
-#         self.net = nn.Sequential(
-#             nn.Linear(dim, hidden_dim),
-#             nn.GELU(),
-#             nn.Dropout(0.1),
-#             nn.Linear(hidden_dim, dim),
-#             nn.Dropout(0.1)
-#         )
-#
-#     def forward(self, x):
-#         return self.net(x)
-
 
 class EncoderLayer(nn.Module):
     def __init__(self, d_model, n_heads, d_dim, d_ff):
@@ -94,9 +62,9 @@ class EncoderLayer(nn.Module):
         return enc_outputs, attn
 
 
-class BERT(nn.Module):
+class Transformer(nn.Module):
     def __init__(self, n_layers, d_model, n_heads, d_dim, d_ff, time_seq):
-        super(BERT, self).__init__()
+        super(Transformer, self).__init__()
         self.layers = nn.ModuleList([EncoderLayer(d_model, n_heads, d_dim, d_ff) for _ in range(n_layers)])
         # self.dense_1 = nn.Linear(d_model * time_seq, 1)
         # self.sigmoid_func = nn.Sigmoid()
