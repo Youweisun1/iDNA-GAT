@@ -11,7 +11,7 @@ from sklearn.metrics import (accuracy_score, average_precision_score,
                              roc_auc_score)
 from torch.nn import functional as F
 
-from data_processing5 import load_task_data, prepare_batch
+from data_processing import load_task_data, prepare_batch
 from MyModel import GraphCNN
 
 
