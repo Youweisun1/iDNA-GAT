@@ -1,6 +1,6 @@
 ### Overview
 
-iDNA_GAT predicts 6mA sites from 41-bp DNA sequences. It combines sequence and graph views and uses gradient affinity to select auxiliary tasks for cross-task learning.
+iDNA_GAT predicts 4mC, 5hmC and 6mA sites from 41-bp DNA sequences. It combines sequence and graph views and uses gradient affinity to select auxiliary tasks for cross-task learning.
 
 The workflow is as follows:
 
@@ -10,21 +10,6 @@ The workflow is as follows:
 4. A CNN extracts local sequence features, a three-layer residual GAT extracts multiscale graph features, and residual multi-head self-attention integrates the fused representation.
 5. Stage I selects a low-conflict auxiliary task from training-gradient affinity and jointly trains it with the target task.
 6. Stage II starts from the best Stage I parameters and refines the model using only the target task.
-
-### Project structure
-
-```text
-MeTT/
-├── ModelTraining2.py   # Training and evaluation entry point
-├── MyModel.py          # CNN, GAT, feature fusion, and classifier
-├── Bert_network2.py    # Residual multi-head self-attention
-├── data_processing5.py # XLSX loading, splitting, encoding, and graph building
-├── requirements.txt    # Python dependencies
-├── checkpoints/        # Saved model parameters
-└── results/            # Metrics and task-selection records
-
-../data7/               # Eleven 6mA datasets in XLSX format
-```
 
 ### Environment
 
