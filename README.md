@@ -23,10 +23,6 @@ PyTorch Geometric 2.6.1
 
 Install the remaining dependencies with:
 
-```bash
-pip install -r requirements.txt
-```
-
 PyTorch and PyTorch Geometric must match the local CUDA version.
 
 ### Training
