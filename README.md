@@ -1,6 +1,6 @@
 ### Overview
 
-iDNA_GAT predicts 4mC, 5hmC and 6mA sites from 41-bp DNA sequences. It combines sequence and graph views and uses gradient affinity to select auxiliary tasks for cross-task learning.
+iDNA_GAT predicts 4mC, 5hmC and 6mA sites from DNA sequences. It combines sequence and graph views and uses gradient affinity to select auxiliary tasks for cross-task learning.
 
 The workflow is as follows:
 
